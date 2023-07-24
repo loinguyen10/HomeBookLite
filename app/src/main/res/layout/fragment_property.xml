@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".propertyActivity.PropertyFragment">
+
+    <ProgressBar
+        style="@style/wrap"
+        android:layout_gravity="center"
+        android:id="@+id/progressProperty" />
+
+    <TextView
+        style="@style/parent"
+        android:text="@string/nothing"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="32dp"
+        android:id="@+id/txtNothingProperty"
+        android:textColor="@color/primary"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        style="@style/parent"
+        android:id="@+id/fPropertyRView"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        style="@style/wrap"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="8pt"
+        android:src="@drawable/ic_add_24"
+        android:backgroundTint="@color/primary"
+        android:id="@+id/addPropertyBtn"/>
+
+</FrameLayout>

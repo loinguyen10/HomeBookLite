@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="20dp"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        style="@style/match"
+        android:background="@drawable/bg_stroke"
+        android:weightSum="5"
+        android:orientation="vertical"
+        android:id="@+id/roomItem"
+        >
+
+        <TextView
+            android:id="@+id/txtTypeRoomItem"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/type"
+            android:paddingLeft="24dp"
+            android:paddingRight="16dp"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:weightSum="5">
+
+            <ImageView
+                android:id="@+id/imgRoomItem"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:src="@drawable/blue_gradient" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:weightSum="4">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:weightSum="2"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:weightSum="4"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_bed_24" />
+
+                        <TextView
+                            android:id="@+id/txtBedRoomItem"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:gravity="center_vertical"
+                            android:text="@string/bed"
+                            android:paddingRight="8dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:weightSum="4"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_people_24" />
+
+                        <TextView
+                            android:id="@+id/txtPeopleRoomItem"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:gravity="center_vertical"
+                            android:text="@string/people"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:weightSum="7">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4">
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/parent"
+                            android:id="@+id/txtOldPriceRoomItem"
+                            android:text="2000000 VND"
+                            android:textSize="15dp"
+                            android:foreground="@drawable/text_strikethrough"
+                            android:gravity="center"
+                            android:textStyle="italic"
+                            />
+
+                        <TextView
+                            style="@style/parent"
+                            android:id="@+id/txtPriceRoomItem"
+                            android:text="2000000 VND"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:textColor="@color/orange"
+                            />
+
+                        <TextView
+                            style="@style/parent"
+                            android:text="@string/perroompernight"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
