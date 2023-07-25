@@ -1,7 +1,7 @@
 package com.united.homebooklite.models;
 
 public class Property {
-    int id,owner_id,rating;
+    int id,owner_id,rating,price;
     String name,description,address,district,province,country,amenities,type;
 
     public Property() {
@@ -17,6 +17,21 @@ public class Property {
         this.address = address;
         this.district = district;
         this.province = province;
+        this.country = country;
+        this.amenities = amenities;
+    }
+
+    public Property(int id, String name, String description, String type, String address, String district, String province, String country, String amenities, int price,int rating, int owner_id) {
+        this.id = id;
+        this.owner_id = owner_id;
+        this.rating = rating;
+        this.type = type;
+        this.name = name;
+        this.description = description;
+        this.address = address;
+        this.district = district;
+        this.province = province;
+        this.price = price;
         this.country = country;
         this.amenities = amenities;
     }
@@ -48,6 +63,10 @@ public class Property {
 
     public void setOwner_id(int owner_id) {
         this.owner_id = owner_id;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     public String getName() {

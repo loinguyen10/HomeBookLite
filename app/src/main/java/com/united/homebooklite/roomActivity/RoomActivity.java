@@ -16,12 +16,9 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.united.homebooklite.BGActivity;
 import com.united.homebooklite.R;
-import com.united.homebooklite.adapter.PropertyAdapter;
 import com.united.homebooklite.adapter.RoomAdapter;
-import com.united.homebooklite.api.InterfaceSelectProperty;
 import com.united.homebooklite.api.InterfaceSelectRoom;
 import com.united.homebooklite.api.SvrResponse;
-import com.united.homebooklite.models.Property;
 import com.united.homebooklite.models.Room;
 
 import java.util.ArrayList;

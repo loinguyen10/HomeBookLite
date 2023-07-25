@@ -1,11 +1,9 @@
 package com.united.homebooklite.propertyActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,8 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.united.homebooklite.BGActivity;
 import com.united.homebooklite.R;
 import com.united.homebooklite.adapter.PropertyAdapter;
-import com.united.homebooklite.api.InterfaceSelectProperty;
-import com.united.homebooklite.api.InterfaceSelectProvince;
+import com.united.homebooklite.api.InterfacePhp;
 import com.united.homebooklite.api.SvrResponse;
 import com.united.homebooklite.models.Property;
 
@@ -97,7 +94,7 @@ public class PropertyFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        InterfaceSelectProperty interfaceSelect = retrofit.create(InterfaceSelectProperty.class);
+        InterfacePhp interfaceSelect = retrofit.create(InterfacePhp.class);
         Call<SvrResponse> call = interfaceSelect.getProperties();
         call.enqueue(new Callback<SvrResponse>() {
 

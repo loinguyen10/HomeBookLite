@@ -25,6 +25,8 @@
     <string name="haveaccount">You have a account?</string>
     <string name="donthaveaccount">You don\'t have a account?</string>
     <string name="wwultg">Where Would You\nLike To Go ?</string>
+    <string name="mostbooking">Most Booking</string>
+    <string name="top">Top</string>
     <string name="create">Create</string>
     <string name="all">All</string>
     <string name="nothing">It\'s nothing here.\nAdd now.</string>

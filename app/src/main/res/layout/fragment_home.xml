@@ -146,9 +146,66 @@
 
                     </LinearLayout>
 
-
-
                 </HorizontalScrollView>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/parent"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/parent"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="8dp"
+                    android:text="@string/top"
+                    android:textColor="@color/primary"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
+
+                <FrameLayout
+                    style="@style/parent">
+
+                    <ProgressBar
+                        style="@style/wrap"
+                        android:layout_gravity="center"
+                        android:id="@+id/progressTHome"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        style="@style/parent"
+                        android:id="@+id/propertyTRView" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/parent"
+                android:layout_marginTop="32dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/parent"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="8dp"
+                    android:text="@string/mostbooking"
+                    android:textColor="@color/primary"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
+
+                <FrameLayout
+                    style="@style/parent">
+
+                    <ProgressBar
+                        style="@style/wrap"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/progressMHome"
+                        android:layout_marginTop="48dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/propertyMRView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+
             </LinearLayout>
 
         </LinearLayout>

@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.united.homebooklite.MainActivity;
 import com.united.homebooklite.R;
+import com.united.homebooklite.api.InterfacePhp;
 import com.united.homebooklite.api.InterfaceSelectAccount;
 import com.united.homebooklite.api.SvrResponse;
 import com.united.homebooklite.models.Account;
@@ -126,8 +127,8 @@ public class LogInFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        InterfaceSelectAccount interfaceSelect = retrofit.create(InterfaceSelectAccount.class);
-        Call<SvrResponse> call = interfaceSelect.getAccounts(email,pass);
+        InterfacePhp interfacex = retrofit.create(InterfacePhp.class);
+        Call<SvrResponse> call = interfacex.getAccounts(email,pass);
         call.enqueue(new Callback<SvrResponse>() {
             @Override
             public void onResponse(Call<SvrResponse> call, Response<SvrResponse> response) {
