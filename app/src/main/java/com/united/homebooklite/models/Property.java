@@ -2,12 +2,12 @@ package com.united.homebooklite.models;
 
 public class Property {
     int id,owner_id,rating,price;
-    String name,description,address,district,province,country,amenities,type;
+    String name,description,address,district,province,country,amenities,type,check;
 
     public Property() {
     }
 
-    public Property(int id, String name, String description, String type, String address, String district, String province, String country, String amenities,int rating, int owner_id) {
+    public Property(int id, String name, String description, String type, String address, String district, String province, String country, String amenities,int rating, String check, int owner_id) {
         this.id = id;
         this.owner_id = owner_id;
         this.rating = rating;
@@ -18,10 +18,11 @@ public class Property {
         this.district = district;
         this.province = province;
         this.country = country;
+        this.check = check;
         this.amenities = amenities;
     }
 
-    public Property(int id, String name, String description, String type, String address, String district, String province, String country, String amenities, int price,int rating, int owner_id) {
+    public Property(int id, String name, String description, String type, String address, String district, String province, String country, String amenities, int price,int rating, String check, int owner_id) {
         this.id = id;
         this.owner_id = owner_id;
         this.rating = rating;
@@ -33,10 +34,11 @@ public class Property {
         this.province = province;
         this.price = price;
         this.country = country;
+        this.check = check;
         this.amenities = amenities;
     }
 
-    public Property(String name, String description, String type, String address, String district, String province, String country, String amenities, int rating, int owner_id) {
+    public Property(String name, String description, String type, String address, String district, String province, String country, String amenities, int rating, String check, int owner_id) {
         this.owner_id = owner_id;
         this.rating = rating;
         this.type = type;
@@ -46,6 +48,7 @@ public class Property {
         this.district = district;
         this.province = province;
         this.country = country;
+        this.check = check;
         this.amenities = amenities;
     }
 
@@ -139,5 +142,13 @@ public class Property {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getCheck() {
+        return check;
+    }
+
+    public void setCheck(String check) {
+        this.check = check;
     }
 }

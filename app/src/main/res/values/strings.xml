@@ -49,6 +49,11 @@
     <string name="amenities">Amenities</string>
     <string name="rating">Rating</string>
     <string name="owner">Owner</string>
+    <string name="policy">Policy</string>
+    <string name="checktime">Check In/Out Time</string>
+    <string name="checkin">Check In</string>
+    <string name="checkout">Check Out</string>
+    <string name="booking">Booking</string>
 
     <!--    room-->
     <string name="newroom">New Room</string>
@@ -61,6 +66,7 @@
     <string name="price">Price</string>
     <string name="price2">Price\/Night (VNĐ)</string>
     <string name="perroompernight">\/ Room\/ Night</string>
+    <string name="only">Only</string>
     <string name="typeofroom">Type of Room</string>
     <string name="qualityofroom">Quality of Room</string>
 

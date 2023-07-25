@@ -68,6 +68,7 @@ public interface InterfacePhp {
             @Field("province") String province,
             @Field("district") String district,
             @Field("rating") int rating,
+            @Field("check_time") String check,
             @Field("owner_id") int owner_id
     );
 

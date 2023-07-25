@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.united.homebooklite.R;
 import com.united.homebooklite.models.Property;
+import com.united.homebooklite.propertyActivity.PropertyShowActivity;
 import com.united.homebooklite.roomActivity.RoomActivity;
 
 import java.util.ArrayList;
@@ -53,12 +54,20 @@ public class PropertyShowAdapter extends RecyclerView.Adapter<PropertyShowAdapte
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                context.startActivity(new Intent(context, RoomActivity.class));
-//                SharedPreferences sP = context.getSharedPreferences("Property_View_File", MODE_PRIVATE);
-//                SharedPreferences.Editor editor = sP.edit();
-//                editor.putString("Fullname", p.getName());
-//                editor.putInt("Id", p.getId());
-//                editor.commit();
+                context.startActivity(new Intent(context, PropertyShowActivity.class));
+                SharedPreferences sP = context.getSharedPreferences("Property_View_File", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sP.edit();
+                editor.putString("Fullname", p.getName());
+                editor.putString("Type", p.getType());
+                editor.putString("District", p.getDistrict());
+                editor.putString("Province", p.getProvince());
+                editor.putString("Description", p.getDescription());
+                editor.putString("Address", p.getAddress());
+                editor.putInt("Price", p.getPrice());
+                editor.putString("Check", p.getCheck());
+                editor.putInt("Id", p.getId());
+                editor.putInt("Rating", p.getRating());
+                editor.commit();
             }
         });
 

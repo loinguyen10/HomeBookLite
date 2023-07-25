@@ -3,6 +3,7 @@ package com.united.homebooklite.propertyActivity;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.app.Activity;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,8 +17,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -34,6 +37,7 @@ import com.united.homebooklite.models.Province;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -46,6 +50,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AddPropertyFragment extends Fragment {
 
     TextInputEditText name, address, description, amenities, owner;
+    EditText checkIn,checkOut;
     Button createP;
     Spinner countryS, provinceS, districtS, typeS;
     RatingBar rating;
@@ -94,7 +99,41 @@ public class AddPropertyFragment extends Fragment {
         ArrayAdapter adapterCategory = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, category);
         typeS.setAdapter(adapterCategory);
 
+        checkIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        checkIn.setText( selectedHour + ":" + selectedMinute);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time to Check In");
+                mTimePicker.show();
+            }
+        });
 
+        checkOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        checkOut.setText( selectedHour + ":" + selectedMinute);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time to Check In");
+                mTimePicker.show();
+            }
+        });
 
 //        countryS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 //            @Override
@@ -172,6 +211,8 @@ public class AddPropertyFragment extends Fragment {
         districtS = view.findViewById(R.id.districtPropertyUp);
         rating = view.findViewById(R.id.starPropertyUp);
         typeS = view.findViewById(R.id.typePropertyUp);
+        checkIn = view.findViewById(R.id.checkInPropertyUp);
+        checkOut = view.findViewById(R.id.checkOutPropertyUp);
     }
 
     private void getCountry() {
@@ -280,6 +321,7 @@ public class AddPropertyFragment extends Fragment {
         property.setCountry("VN");
         property.setProvince(province.getName());
         property.setDistrict(district.getName());
+        property.setCheck(checkIn.getText().toString() + ";" + checkOut.getText().toString());
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://lmatmet1234.000webhostapp.com/homebook/property/")
@@ -298,6 +340,7 @@ public class AddPropertyFragment extends Fragment {
                         property.getProvince(),
                         property.getDistrict(),
                         property.getRating(),
+                        property.getCheck(),
                         property.getOwner_id()
                 );
         call.enqueue(new Callback<SvrResponse>() {

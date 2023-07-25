@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".PropertyShowActivity"
+            android:name=".propertyActivity.PropertyShowActivity"
             android:exported="false" />
         <activity
             android:name=".roomActivity.RoomActivity"
