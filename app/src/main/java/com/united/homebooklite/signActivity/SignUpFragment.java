@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.united.homebooklite.R;
-import com.united.homebooklite.api.InterfaceInsertAccount;
+import com.united.homebooklite.api.InterfacePhp;
 import com.united.homebooklite.api.SvrResponse;
 import com.united.homebooklite.models.Account;
 
@@ -130,7 +130,7 @@ public class SignUpFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        InterfaceInsertAccount interfaceInsert = retrofit.create(InterfaceInsertAccount.class);
+        InterfacePhp interfaceInsert = retrofit.create(InterfacePhp.class);
         Call<SvrResponse> call =
                 interfaceInsert.insertAccount(acc.getEmail(), acc.getPassword(), acc.getRole(), acc.getName(), acc.getPhone());
         call.enqueue(new Callback<SvrResponse>() {
