@@ -27,7 +27,25 @@ public interface InterfacePhp {
     );
 
     //room
+    @GET("api_getRoom.php")
+    Call<SvrResponse> getRooms(
+            @Query("property_id") int property_id
+    );
 
+    @FormUrlEncoded
+    @POST("api_createRoom.php")
+    Call<SvrResponse> insertRoom(
+            @Field("quality") String quality,
+            @Field("type") String type,
+            @Field("size") int size,
+            @Field("bed") int bed,
+            @Field("people") int people,
+            @Field("room") int room,
+            @Field("amenities") String amenities,
+            @Field("price") int price,
+            @Field("property_id") int property_id,
+            @Field("available") int available
+    );
 
     //properties
     @GET("api_getProperty.php")
@@ -36,6 +54,33 @@ public interface InterfacePhp {
 
     @GET("api_getPropertyShow.php")
     Call<SvrResponse> getPropertiesShow(
+    );
+
+    @FormUrlEncoded
+    @POST("api_createProperty.php")
+    Call<SvrResponse> insertProperty(
+            @Field("name") String name,
+            @Field("description") String description,
+            @Field("type") String type,
+            @Field("address") String address,
+            @Field("amenities") String amenities,
+            @Field("country") String country,
+            @Field("province") String province,
+            @Field("district") String district,
+            @Field("rating") int rating,
+            @Field("owner_id") int owner_id
+    );
+
+    @GET("api_getCountry.php")
+    Call<SvrResponse> getCountries(
+    );
+
+    @GET("api_getProvince.php")
+    Call<SvrResponse> getProvinces(
+    );
+
+    @GET("api_getDistrict.php")
+    Call<SvrResponse> getDistricts(
     );
 
 }

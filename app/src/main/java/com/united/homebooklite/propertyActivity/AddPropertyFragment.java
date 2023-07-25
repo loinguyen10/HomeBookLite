@@ -25,10 +25,7 @@ import com.united.homebooklite.R;
 import com.united.homebooklite.adapter.CountryAdapter;
 import com.united.homebooklite.adapter.DistrictAdapter;
 import com.united.homebooklite.adapter.ProvinceAdapter;
-import com.united.homebooklite.api.InterfaceInsertProperty;
-import com.united.homebooklite.api.InterfaceSelectCountry;
-import com.united.homebooklite.api.InterfaceSelectDistrict;
-import com.united.homebooklite.api.InterfaceSelectProvince;
+import com.united.homebooklite.api.InterfacePhp;
 import com.united.homebooklite.api.SvrResponse;
 import com.united.homebooklite.models.Country;
 import com.united.homebooklite.models.District;
@@ -209,7 +206,7 @@ public class AddPropertyFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        InterfaceSelectDistrict interfaceSelect = retrofit.create(InterfaceSelectDistrict.class);
+        InterfacePhp interfaceSelect = retrofit.create(InterfacePhp.class);
         Call<SvrResponse> call = interfaceSelect.getDistricts();
         call.enqueue(new Callback<SvrResponse>() {
             @Override
@@ -235,7 +232,7 @@ public class AddPropertyFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        InterfaceSelectProvince interfaceSelect = retrofit.create(InterfaceSelectProvince.class);
+        InterfacePhp interfaceSelect = retrofit.create(InterfacePhp.class);
         Call<SvrResponse> call = interfaceSelect.getProvinces();
         call.enqueue(new Callback<SvrResponse>() {
 
@@ -289,7 +286,7 @@ public class AddPropertyFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        InterfaceInsertProperty interfaceInsert = retrofit.create(InterfaceInsertProperty.class);
+        InterfacePhp interfaceInsert = retrofit.create(InterfacePhp.class);
         Call<SvrResponse> call =
                 interfaceInsert.insertProperty(
                         property.getName(),

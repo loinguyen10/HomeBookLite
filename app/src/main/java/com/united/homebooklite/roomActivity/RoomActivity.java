@@ -17,7 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.united.homebooklite.BGActivity;
 import com.united.homebooklite.R;
 import com.united.homebooklite.adapter.RoomAdapter;
-import com.united.homebooklite.api.InterfaceSelectRoom;
+import com.united.homebooklite.api.InterfacePhp;
 import com.united.homebooklite.api.SvrResponse;
 import com.united.homebooklite.models.Room;
 
@@ -111,7 +111,7 @@ public class RoomActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        InterfaceSelectRoom interfaceSelect = retrofit.create(InterfaceSelectRoom.class);
+        InterfacePhp interfaceSelect = retrofit.create(InterfacePhp.class);
         Call<SvrResponse> call = interfaceSelect.getRooms(pId);
         call.enqueue(new Callback<SvrResponse>() {
 

@@ -18,8 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.united.homebooklite.R;
-import com.united.homebooklite.api.InterfaceInsertProperty;
-import com.united.homebooklite.api.InterfaceInsertRoom;
+import com.united.homebooklite.api.InterfacePhp;
 import com.united.homebooklite.api.SvrResponse;
 import com.united.homebooklite.models.District;
 import com.united.homebooklite.models.Property;
@@ -115,7 +114,7 @@ public class AddHotelFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        InterfaceInsertRoom interfaceInsert = retrofit.create(InterfaceInsertRoom.class);
+        InterfacePhp interfaceInsert = retrofit.create(InterfacePhp.class);
         Call<SvrResponse> call =
                 interfaceInsert.insertRoom(
                         room.getQuality(),
