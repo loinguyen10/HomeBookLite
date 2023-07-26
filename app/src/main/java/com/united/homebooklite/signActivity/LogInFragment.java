@@ -147,9 +147,8 @@ public class LogInFragment extends Fragment {
 
             @Override
             public void onFailure(Call<SvrResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT);
                 Log.d("Message: ", t.getMessage());
-                Log.e("Message: ", t.getMessage());
+                System.out.println("Message: " + t.getMessage());
             }
         });
     }

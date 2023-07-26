@@ -30,6 +30,7 @@
     <string name="create">Create</string>
     <string name="all">All</string>
     <string name="nothing">It\'s nothing here.\nAdd now.</string>
+    <string name="nothing2">It\'s nothing here.</string>
 
     <!--Property-->
     <string name="hotel">Hotel</string>

@@ -62,6 +62,7 @@ public class PropertyShowAdapter extends RecyclerView.Adapter<PropertyShowAdapte
                 editor.putString("District", p.getDistrict());
                 editor.putString("Province", p.getProvince());
                 editor.putString("Description", p.getDescription());
+                editor.putString("Amenities",p.getAmenities());
                 editor.putString("Address", p.getAddress());
                 editor.putInt("Price", p.getPrice());
                 editor.putString("Check", p.getCheck());

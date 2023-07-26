@@ -1,28 +1,58 @@
 package com.united.homebooklite.propertyActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.united.homebooklite.R;
+import com.united.homebooklite.adapter.PropertyShowAdapter;
+import com.united.homebooklite.adapter.RoomShowAdapter;
+import com.united.homebooklite.adapter.SingleAdapter;
+import com.united.homebooklite.api.InterfacePhp;
+import com.united.homebooklite.api.SvrResponse;
+import com.united.homebooklite.models.Property;
+import com.united.homebooklite.models.Room;
+import com.united.homebooklite.roomActivity.RoomActivity;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PropertyShowActivity extends AppCompatActivity {
 
     ImageView img;
-    TextView name,province,address,checkIn,checkOut,description,price;
+    TextView name,province,address,checkIn,checkOut,description,price,txtNothing;
     Button type,booking;
     RatingBar rating;
-    RecyclerView amenitiesRV;
+    RecyclerView amenitiesRV,roomRV;
     String nameS,typeS,provinceS,districtS,amenitiesS,addressS,checkS,descriptionS;
-    int ratingS,priceS;
+    int ratingS,priceS,idS;
+    ScrollView scrollView;
+    LinearLayout bookingLL,roomLL;
+    ProgressBar progress;
+
+    List<Room> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +71,19 @@ public class PropertyShowActivity extends AppCompatActivity {
         descriptionS = sP.getString("Description","");
         ratingS = sP.getInt("Rating",0);
         priceS = sP.getInt("Price",0);
+        idS = sP.getInt("Id",0);
 
         mapping();
 
         String[] checkTime = checkS.split(";");
+
+        String[] amenitiesList = amenitiesS.split(";");
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        amenitiesRV.setLayoutManager(linearLayoutManager);
+
+        SingleAdapter adapter = new SingleAdapter(this, Arrays.asList(amenitiesList));
+
+        getRooms();
 
         name.setText(nameS);
         type.setText(typeS);
@@ -55,12 +94,25 @@ public class PropertyShowActivity extends AppCompatActivity {
         checkOut.setText("Before " + checkTime[1]);
         description.setText(descriptionS);
         price.setText(priceS+" VNĐ");
+        amenitiesRV.setAdapter(adapter);
 
         Log.d("Time",checkTime[0] + checkTime[1]);
 
         booking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                scrollView.smoothScrollTo(0,roomLL.getTop());
+            }
+        });
+
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                if(scrollView.getScrollY() >= roomLL.getTop() - scrollView.getHeight()){
+                    bookingLL.setVisibility(View.GONE);
+                }else{
+                    bookingLL.setVisibility(View.VISIBLE);
+                }
 
             }
         });
@@ -80,7 +132,64 @@ public class PropertyShowActivity extends AppCompatActivity {
         description = findViewById(R.id.txtDescriptionPropertyShowA);
         price = findViewById(R.id.txtPricePropertyShowA);
         booking = findViewById(R.id.bookingButton);
+        scrollView = findViewById(R.id.scrollViewPropertyShowA);
+        roomLL = findViewById(R.id.roomPropertyShowA);
+        bookingLL = findViewById(R.id.bookingPropertyShowA);
+        progress = findViewById(R.id.progressPRoom);
+        roomRV = findViewById(R.id.roomPRView);
+        txtNothing = findViewById(R.id.txtNothingRoomP);
     }
 
+    private void loading(){
+        if(list == null){
 
+        }else{
+            progress.setVisibility(View.INVISIBLE);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            roomRV.setLayoutManager(linearLayoutManager);
+            roomRV.setHasFixedSize(true);
+            RoomShowAdapter adapter = new RoomShowAdapter(this, (ArrayList<Room>) list);
+            roomRV.setAdapter(adapter);
+
+            if(list.size() <= 0){
+
+            }
+        }
+    }
+
+    private void getRooms() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://lmatmet1234.000webhostapp.com/homebook/room/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        InterfacePhp interfaceSelect = retrofit.create(InterfacePhp.class);
+        Call<SvrResponse> call = interfaceSelect.getRooms(idS);
+        call.enqueue(new Callback<SvrResponse>() {
+
+            @Override
+            public void onResponse(Call<SvrResponse> call, Response<SvrResponse> response) {
+                SvrResponse svrResponseSelect = response.body();
+                if(svrResponseSelect.getRooms() == null){
+                    progress.setVisibility(View.INVISIBLE);
+                    txtNothing.setVisibility(View.VISIBLE);
+                }else{
+                    list = new ArrayList<>(Arrays.asList(svrResponseSelect.getRooms()));
+                    loading();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SvrResponse> call, Throwable t) {
+                Toast.makeText(PropertyShowActivity.this, t.getMessage(), Toast.LENGTH_SHORT);
+                Log.d("Message: ", t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }
