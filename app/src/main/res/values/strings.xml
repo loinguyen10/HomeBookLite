@@ -55,6 +55,7 @@
     <string name="checkin">Check In</string>
     <string name="checkout">Check Out</string>
     <string name="booking">Booking</string>
+    <string name="select">Select</string>
 
     <!--    room-->
     <string name="newroom">New Room</string>

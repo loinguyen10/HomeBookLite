@@ -43,7 +43,7 @@ public class PropertyShowActivity extends AppCompatActivity {
 
     ImageView img;
     TextView name,province,address,checkIn,checkOut,description,price,txtNothing;
-    Button type,booking;
+    Button type,select;
     RatingBar rating;
     RecyclerView amenitiesRV,roomRV;
     String nameS,typeS,provinceS,districtS,amenitiesS,addressS,checkS,descriptionS;
@@ -61,7 +61,6 @@ public class PropertyShowActivity extends AppCompatActivity {
 
         SharedPreferences sP = getSharedPreferences("Property_View_File", MODE_PRIVATE);
         nameS = sP.getString("Fullname","");
-        typeS = sP.getString("Type","");
         typeS = sP.getString("Type","");
         provinceS = sP.getString("Province","");
         districtS = sP.getString("District","");
@@ -98,7 +97,7 @@ public class PropertyShowActivity extends AppCompatActivity {
 
         Log.d("Time",checkTime[0] + checkTime[1]);
 
-        booking.setOnClickListener(new View.OnClickListener() {
+        select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 scrollView.smoothScrollTo(0,roomLL.getTop());
@@ -131,7 +130,7 @@ public class PropertyShowActivity extends AppCompatActivity {
         checkOut = findViewById(R.id.txtCheckOutPropertyShowA);
         description = findViewById(R.id.txtDescriptionPropertyShowA);
         price = findViewById(R.id.txtPricePropertyShowA);
-        booking = findViewById(R.id.bookingButton);
+        select = findViewById(R.id.selectButton);
         scrollView = findViewById(R.id.scrollViewPropertyShowA);
         roomLL = findViewById(R.id.roomPropertyShowA);
         bookingLL = findViewById(R.id.bookingPropertyShowA);

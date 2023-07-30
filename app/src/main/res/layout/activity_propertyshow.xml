@@ -419,13 +419,13 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/bookingButton"
+                android:id="@+id/selectButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginVertical="4dp"
                 android:background="@color/white"
-                android:text="@string/booking"
+                android:text="@string/select"
                 android:textColor="@color/primary"
                 android:textStyle="bold" />
 
