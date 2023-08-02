@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -19,6 +21,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.united.homebooklite.R;
 import com.united.homebooklite.adapter.PropertyShowAdapter;
 import com.united.homebooklite.adapter.RoomShowAdapter;
@@ -29,8 +32,12 @@ import com.united.homebooklite.models.Property;
 import com.united.homebooklite.models.Room;
 import com.united.homebooklite.roomActivity.RoomActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -51,6 +58,10 @@ public class PropertyShowActivity extends AppCompatActivity {
     ScrollView scrollView;
     LinearLayout bookingLL,roomLL;
     ProgressBar progress;
+    TextInputEditText checkInDate,checkOutDate;
+    int dD,mM,yY;
+    Date date;
+    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
     List<Room> list = new ArrayList<>();
 
@@ -116,6 +127,20 @@ public class PropertyShowActivity extends AppCompatActivity {
             }
         });
 
+        checkInDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkDate(checkInDate);
+            }
+        });
+
+        checkOutDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkDate(checkOutDate);
+            }
+        });
+
     }
 
     private void mapping(){
@@ -128,6 +153,8 @@ public class PropertyShowActivity extends AppCompatActivity {
         address = findViewById(R.id.txtAddressPropertyShowA);
         checkIn = findViewById(R.id.txtCheckInPropertyShowA);
         checkOut = findViewById(R.id.txtCheckOutPropertyShowA);
+        checkInDate = findViewById(R.id.txtCheckInDatePropertyShowA);
+        checkOutDate = findViewById(R.id.txtCheckOutDatePropertyShowA);
         description = findViewById(R.id.txtDescriptionPropertyShowA);
         price = findViewById(R.id.txtPricePropertyShowA);
         select = findViewById(R.id.selectButton);
@@ -184,6 +211,26 @@ public class PropertyShowActivity extends AppCompatActivity {
                 Log.d("Message: ", t.getMessage());
             }
         });
+    }
+
+    private void checkDate(TextInputEditText editText){
+        DatePickerDialog.OnDateSetListener chonDate = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                yY = year; mM = month; dD = dayOfMonth;
+                GregorianCalendar gC = new GregorianCalendar(yY,mM,dD);
+                editText.setText(format.format(gC.getTime()));
+                date = gC.getTime();
+            }
+        };
+
+        Calendar calendar = Calendar.getInstance();
+        yY = calendar.get(Calendar.YEAR);
+        mM = calendar.get(Calendar.MONTH);
+        dD = calendar.get(Calendar.DATE);
+
+        DatePickerDialog d = new DatePickerDialog(PropertyShowActivity.this,0,chonDate,yY,mM,dD);
+        d.show();
     }
 
     @Override

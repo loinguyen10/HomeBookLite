@@ -310,7 +310,63 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/roomPropertyShowA"
+                style="@style/parent"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:id="@+id/roomPropertyShowA"> //
+
+                <TextView
+                    style="@style/parent"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/date"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    style="@style/parent"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="8dp"
+                    android:textSize="16dp"
+                    android:weightSum="2">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtCheckInDatePropertyShowA"
+                            style="@style/parent"
+                            android:backgroundTint="@color/primary"
+                            android:hint="@string/checkin"
+                            android:layout_marginHorizontal="8dp"
+                            android:editable="false"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtCheckOutDatePropertyShowA"
+                            style="@style/parent"
+                            android:backgroundTint="@color/primary"
+                            android:hint="@string/checkout"
+                            android:layout_marginHorizontal="8dp"
+                            android:editable="false"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
                 style="@style/parent"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical">
