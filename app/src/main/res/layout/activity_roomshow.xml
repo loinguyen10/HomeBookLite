@@ -7,7 +7,7 @@
     tools:context=".roomActivity.RoomShowActivity">
 
     <ScrollView
-        android:id="@+id/scrollViewPropertyShowA"
+        android:id="@+id/scrollViewRoomShowA"
         style="@style/match"
         android:scrollbarStyle="outsideOverlay">
 
@@ -16,7 +16,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imgPropertyShowA"
+                android:id="@+id/imgRoomShowA"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:src="@drawable/blue_gradient" />
@@ -24,7 +24,7 @@
             <LinearLayout style="@style/wrap">
 
                 <ImageView
-                    android:id="@+id/img1PropertyShowMini"
+                    android:id="@+id/img1RoomShowMini"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
                     android:src="@drawable/blue_gradient" />
@@ -32,7 +32,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/txtNamePropertyShowA"
+                android:id="@+id/txtTypeRoomShowA"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="16dp"
@@ -66,7 +66,7 @@
                         android:src="@drawable/ic_bed_24" />
 
                     <TextView
-                        android:id="@+id/txtBedRoomShowItem"
+                        android:id="@+id/txtBedRoomShowA"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
@@ -91,7 +91,7 @@
                         android:src="@drawable/ic_people_24" />
 
                     <TextView
-                        android:id="@+id/txtPeopleRoomShowItem"
+                        android:id="@+id/txtPeopleRoomShowA"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
@@ -117,7 +117,7 @@
                     android:src="@drawable/ic_crop_24" />
 
                 <TextView
-                    android:id="@+id/txtSizeRoomShowItem"
+                    android:id="@+id/txtSizeRoomShowA"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
@@ -142,7 +142,7 @@
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvAmenitiesPropertyA"
+                    android:id="@+id/rvAmenitiesRoomShowA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -179,7 +179,7 @@
                         android:src="@drawable/ic_time_24" />
 
                     <TextView
-                        android:id="@+id/txtTimePropertyShowA"
+                        android:id="@+id/txtTimeRoomShowA"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="6"
@@ -224,7 +224,7 @@
                                 android:textStyle="bold|italic" />
 
                             <TextView
-                                android:id="@+id/txtCheckInPropertyShowA"
+                                android:id="@+id/txtCheckInRoomShowA"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -250,7 +250,7 @@
                                 android:textStyle="bold|italic" />
 
                             <TextView
-                                android:id="@+id/txtCheckOutPropertyShowA"
+                                android:id="@+id/txtCheckOutRoomShowA"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -275,7 +275,7 @@
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/bookingPropertyShowA"
+        android:id="@+id/bookingRoomShowA"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="bottom"
@@ -304,10 +304,11 @@
                     android:text="Start date to date"
                     android:textColor="@color/white"
                     android:textSize="10dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:id="@+id/txtCheckDateRoomShowA" />
 
                 <TextView
-                    android:id="@+id/txtPricePropertyShowA"
+                    android:id="@+id/txtPriceRoomShowA"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="2"

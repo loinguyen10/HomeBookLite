@@ -71,6 +71,7 @@ public class PropertyShowActivity extends AppCompatActivity {
         setContentView(R.layout.activity_propertyshow);
 
         SharedPreferences sP = getSharedPreferences("Property_View_File", MODE_PRIVATE);
+
         nameS = sP.getString("Fullname","");
         typeS = sP.getString("Type","");
         provinceS = sP.getString("Province","");
@@ -130,17 +131,16 @@ public class PropertyShowActivity extends AppCompatActivity {
         checkInDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkDate(checkInDate);
+                checkDate(checkInDate,"CheckIn");
             }
         });
 
         checkOutDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkDate(checkOutDate);
+                checkDate(checkOutDate,"CheckOut");
             }
         });
-
     }
 
     private void mapping(){
@@ -213,13 +213,16 @@ public class PropertyShowActivity extends AppCompatActivity {
         });
     }
 
-    private void checkDate(TextInputEditText editText){
+    private void checkDate(TextInputEditText editText, String txt){
+        SharedPreferences cK = getSharedPreferences("Reservation_View_File", MODE_PRIVATE);
+        SharedPreferences.Editor editor = cK.edit();
         DatePickerDialog.OnDateSetListener chonDate = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 yY = year; mM = month; dD = dayOfMonth;
                 GregorianCalendar gC = new GregorianCalendar(yY,mM,dD);
                 editText.setText(format.format(gC.getTime()));
+                editor.putString( txt + " Date",format.format(gC.getTime()));
                 date = gC.getTime();
             }
         };

@@ -1,6 +1,10 @@
 package com.united.homebooklite.adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.united.homebooklite.R;
 import com.united.homebooklite.models.Room;
+import com.united.homebooklite.propertyActivity.PropertyShowActivity;
+import com.united.homebooklite.roomActivity.RoomShowActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,7 +69,20 @@ public class RoomShowAdapter extends RecyclerView.Adapter<RoomShowAdapter.ViewHo
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                context.startActivity(new Intent(context, RoomShowActivity.class));
+                SharedPreferences sP = context.getSharedPreferences("Room_View_File", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sP.edit();
+                editor.putString("Type", r.getType());
+                editor.putString("Quality", r.getQuality());
+                editor.putInt("Property Id", r.getProperty_id());
+                editor.putInt("Size", r.getSize());
+                editor.putInt("Bed", r.getBed());
+                editor.putInt("People", r.getPeople());
+                editor.putInt("Room", r.getRoom());
+                editor.putString("Amenities",r.getAmenities());
+                editor.putInt("Price", r.getPrice());
+                editor.putInt("Id", r.getId());
+                editor.commit();
             }
         });
 

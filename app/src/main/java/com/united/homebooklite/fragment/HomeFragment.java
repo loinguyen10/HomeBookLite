@@ -112,7 +112,7 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT);
                 Log.d("Message: ", t.getMessage());
                 System.out.println(t.getMessage());
-                getTop();
+                loading();
             }
         });
     }
@@ -144,7 +144,7 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT);
                 System.out.println(t.getMessage());
                 Log.d("Message: ", t.getMessage());
-                getMost();
+                loading();
             }
         });
     }
