@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.united.homebooklite.adapter.SingleAdapter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -61,6 +63,8 @@ public class RoomShowActivity extends AppCompatActivity {
 
         checkInDate = cK.getString("CheckIn Date", "");
         checkOutDate = cK.getString("CheckOut Date", "");
+        Log.d("CheckIn Date",checkInDate);
+        Log.d("CheckOut Date",checkOutDate);
     }
 
     private void mapping() {
@@ -89,5 +93,26 @@ public class RoomShowActivity extends AppCompatActivity {
         amenities.setAdapter(adapter);
 
         checkDate.setText("Begin " + checkInDate + " to " + checkOutDate);
+
+        try{
+            calculate(checkInDate,checkOutDate);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private int calculate(String date1, String date2) throws ParseException {
+        int kq = 0;
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date date11 = format.parse(date1);
+        Date date22 = format.parse(date2);
+
+        Log.d("date1",date11+"");
+        Log.d("date2",date22+"");
+
+        kq = (int) (date22.getTime() - date11.getTime());
+
+        Log.d("kq",kq+"");
+        return kq;
     }
 }

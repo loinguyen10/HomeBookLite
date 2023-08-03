@@ -60,8 +60,8 @@ public class PropertyShowActivity extends AppCompatActivity {
     ProgressBar progress;
     TextInputEditText checkInDate,checkOutDate;
     int dD,mM,yY;
-    Date date;
     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+    Calendar calendar;
 
     List<Room> list = new ArrayList<>();
 
@@ -71,6 +71,8 @@ public class PropertyShowActivity extends AppCompatActivity {
         setContentView(R.layout.activity_propertyshow);
 
         SharedPreferences sP = getSharedPreferences("Property_View_File", MODE_PRIVATE);
+        SharedPreferences cK = getSharedPreferences("Reservation_View_File", MODE_PRIVATE);
+        SharedPreferences.Editor editor = cK.edit();
 
         nameS = sP.getString("Fullname","");
         typeS = sP.getString("Type","");
@@ -108,6 +110,17 @@ public class PropertyShowActivity extends AppCompatActivity {
         amenitiesRV.setAdapter(adapter);
 
         Log.d("Time",checkTime[0] + checkTime[1]);
+
+        calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+
+        checkInDate.setText(format.format(new Date()));
+        checkOutDate.setText(format.format(calendar.getTime()));
+
+        editor.putString("CheckIn Date", format.format(new Date())+"");
+        editor.putString("CheckOut Date", format.format(calendar.getTime())+"");
+        editor.commit();
 
         select.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,12 +235,11 @@ public class PropertyShowActivity extends AppCompatActivity {
                 yY = year; mM = month; dD = dayOfMonth;
                 GregorianCalendar gC = new GregorianCalendar(yY,mM,dD);
                 editText.setText(format.format(gC.getTime()));
-                editor.putString( txt + " Date",format.format(gC.getTime()));
-                date = gC.getTime();
+                editor.putString(txt + " Date", format.format(gC.getTime())+"");
+                editor.commit();
             }
         };
 
-        Calendar calendar = Calendar.getInstance();
         yY = calendar.get(Calendar.YEAR);
         mM = calendar.get(Calendar.MONTH);
         dD = calendar.get(Calendar.DATE);
