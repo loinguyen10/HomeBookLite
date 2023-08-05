@@ -83,6 +83,15 @@ public class RoomShowAdapter extends RecyclerView.Adapter<RoomShowAdapter.ViewHo
                 editor.putInt("Price", r.getPrice());
                 editor.putInt("Id", r.getId());
                 editor.commit();
+
+                SharedPreferences cK = context.getSharedPreferences("Reservation_View_File", MODE_PRIVATE);
+                SharedPreferences.Editor editorCK = cK.edit();
+
+                editorCK.putString("TypeRoom",r.getQuality() + " " + r.getType());
+                editorCK.putInt("PriceRoom", r.getPrice());
+                editorCK.putInt("IdRoom",r.getId());
+
+                editorCK.commit();
             }
         });
 

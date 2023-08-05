@@ -73,6 +73,23 @@
     <string name="typeofroom">Type of Room</string>
     <string name="qualityofroom">Quality of Room</string>
 
+    <!--    reservation-->
+    <string name="customer"><u>Customer</u></string>
+    <string name="property2"><u>Property</u></string>
+    <string name="room3"><u>Room</u></string>
+    <string name="namecustomer">Name of Customer</string>
+    <string name="phonecustomer">Phone of Customer</string>
+    <string name="emailcustomer">Email of Customer</string>
+    <string name="idcustomer">Citizen Identification of Customer</string>
+    <string name="nameproperty">Name of Property</string>
+    <string name="addressproperty">Address of Property</string>
+    <string name="checkindate">Check In Date</string>
+    <string name="checkoutdate">Check Out Date</string>
+    <string name="numberroom">Number of Rooms</string>
+    <string name="numbercustomer">Number of Customers</string>
+    <string name="numbernight">Number of Nights</string>
+    <string name="totalcost">Total Costs</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

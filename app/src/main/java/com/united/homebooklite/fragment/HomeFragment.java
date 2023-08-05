@@ -65,7 +65,8 @@ public class HomeFragment extends Fragment {
 
     private void loading(){
         if(listTop == null || listMost == null){
-
+            getTop();
+            getMost();
         }else{
             progressTop.setVisibility(View.INVISIBLE);
             progressMost.setVisibility(View.INVISIBLE);

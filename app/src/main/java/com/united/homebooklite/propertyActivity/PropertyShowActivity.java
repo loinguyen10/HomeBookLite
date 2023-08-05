@@ -71,7 +71,8 @@ public class PropertyShowActivity extends AppCompatActivity {
         setContentView(R.layout.activity_propertyshow);
 
         SharedPreferences sP = getSharedPreferences("Property_View_File", MODE_PRIVATE);
-        SharedPreferences cK = getSharedPreferences("Reservation_View_File", MODE_PRIVATE);
+        //SharedPreferences cK = getSharedPreferences("Reservation_View_File", MODE_PRIVATE);
+        SharedPreferences cK = getSharedPreferences("Date_View_File", MODE_PRIVATE);
         SharedPreferences.Editor editor = cK.edit();
 
         nameS = sP.getString("Fullname","");
@@ -227,7 +228,7 @@ public class PropertyShowActivity extends AppCompatActivity {
     }
 
     private void checkDate(TextInputEditText editText, String txt){
-        SharedPreferences cK = getSharedPreferences("Reservation_View_File", MODE_PRIVATE);
+        SharedPreferences cK = getSharedPreferences("Date_View_File", MODE_PRIVATE);
         SharedPreferences.Editor editor = cK.edit();
         DatePickerDialog.OnDateSetListener chonDate = new DatePickerDialog.OnDateSetListener() {
             @Override

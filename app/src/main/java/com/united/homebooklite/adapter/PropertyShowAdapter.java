@@ -69,6 +69,15 @@ public class PropertyShowAdapter extends RecyclerView.Adapter<PropertyShowAdapte
                 editor.putInt("Id", p.getId());
                 editor.putInt("Rating", p.getRating());
                 editor.commit();
+
+                SharedPreferences cK = context.getSharedPreferences("Reservation_View_File", MODE_PRIVATE);
+                SharedPreferences.Editor editorCK = cK.edit();
+
+                editorCK.putString("NameProperty",p.getName());
+                editorCK.putString("AddressProperty",p.getAddress() + ", " + p.getDistrict() + ", " + p.getProvince());
+                editorCK.putInt("IdProperty",p.getId());
+
+                editorCK.commit();
             }
         });
 

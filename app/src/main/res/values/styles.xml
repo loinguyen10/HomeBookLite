@@ -39,4 +39,8 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="buttonOK" parent="button">
+        <item name="android:background">@drawable/button_ok</item>
+    </style>
+
 </resources>

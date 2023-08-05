@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".reservationActivity.ReservationActivity">
+
+    <ScrollView
+        style="@style/parent"
+        android:layout_marginTop="72dp"
+        android:scrollbarStyle="outsideOverlay">
+
+        <LinearLayout
+            style="@style/parent"
+            android:orientation="vertical"
+            android:paddingBottom="24dp">
+
+            <LinearLayout
+                style="@style/parent"
+                android:layout_marginTop="24dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="4dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/customer"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold|italic"
+                    android:background="@color/black_50"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/parent"
+                    android:layout_marginVertical="8dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtNameCustomerReservationUp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginVertical="5dp"
+                        android:backgroundTint="@color/primary"
+                        android:hint="@string/namecustomer"
+                        android:paddingVertical="10dp"
+                        android:text="@string/namecustomer" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/parent"
+                    android:layout_marginVertical="8dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtPhoneCustomerReservationUp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginVertical="5dp"
+                        android:backgroundTint="@color/primary"
+                        android:hint="@string/phonecustomer"
+                        android:paddingVertical="10dp"
+                        android:text="@string/phonecustomer"
+                        android:inputType="number"
+                        android:minEms="10"
+                        android:maxEms="10"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/parent"
+                    android:layout_marginVertical="8dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtEmailCustomerReservationUp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginVertical="5dp"
+                        android:backgroundTint="@color/primary"
+                        android:hint="@string/emailcustomer"
+                        android:paddingVertical="10dp"
+                        android:text="@string/emailcustomer" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/parent"
+                    android:layout_marginVertical="8dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtIDCustomerReservationUp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginVertical="5dp"
+                        android:backgroundTint="@color/primary"
+                        android:editable="false"
+                        android:hint="@string/idcustomer"
+                        android:paddingVertical="10dp"
+                        android:text="@string/idcustomer"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/parent"
+                android:layout_marginTop="24dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="4dp"
+                    android:background="@color/black_50"
+                    android:gravity="center_vertical"
+                    android:text="@string/property2"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold|italic" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/parent"
+                    android:layout_marginVertical="8dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtNamePropertyReservationUp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginVertical="5dp"
+                        android:backgroundTint="@color/primary"
+                        android:hint="@string/nameproperty"
+                        android:paddingVertical="10dp"
+                        android:text="@string/nameproperty"
+                        android:editable="false"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/parent"
+                    android:layout_marginVertical="8dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtAddressPropertyReservationUp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginVertical="5dp"
+                        android:backgroundTint="@color/primary"
+                        android:hint="@string/addressproperty"
+                        android:paddingVertical="10dp"
+                        android:text="@string/addressproperty"
+                        android:editable="false"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/parent"
+                android:layout_marginTop="24dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="4dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/room3"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:background="@color/black_50"
+                    android:textStyle="bold|italic" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/parent"
+                    android:layout_marginVertical="8dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtTypeRoomReservationUp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginVertical="5dp"
+                        android:backgroundTint="@color/primary"
+                        android:hint="@string/typeofroom"
+                        android:paddingVertical="10dp"
+                        android:text="@string/typeofroom"
+                        android:editable="false"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    style="@style/parent"
+                    android:layout_marginVertical="8dp"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="8dp"
+                    android:weightSum="2">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtNumberRoomReservationUp"
+                            style="@style/parent"
+                            android:backgroundTint="@color/primary"
+                            android:hint="@string/numberroom"
+                            android:text="3"
+                            android:layout_marginHorizontal="8dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtNumberCustomerReservationUp"
+                            style="@style/parent"
+                            android:backgroundTint="@color/primary"
+                            android:hint="@string/numbercustomer"
+                            android:text="5"
+                            android:layout_marginHorizontal="8dp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginVertical="8dp"
+                    android:paddingHorizontal="8dp"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:weightSum="2"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtCheckInDateReservationUp"
+                                style="@style/parent"
+                                android:backgroundTint="@color/primary"
+                                android:hint="@string/checkindate"
+                                android:text="29/04/2020"
+                                android:layout_marginHorizontal="8dp"
+                                android:editable="false"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtCheckOutDateReservationUp"
+                                style="@style/parent"
+                                android:backgroundTint="@color/primary"
+                                android:hint="@string/checkoutdate"
+                                android:text="02/05/2020"
+                                android:layout_marginHorizontal="8dp"
+                                android:editable="false"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingHorizontal="32dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtNumberNightReservationUp"
+                                style="@style/parent"
+                                android:backgroundTint="@color/primary"
+                                android:hint="@string/numbernight"
+                                android:text="3"
+                                android:layout_marginHorizontal="8dp"
+                                android:editable="false"
+                                android:gravity="center"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/black_50"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/parent"
+                android:layout_marginVertical="8dp"
+                android:layout_marginTop="24dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtPriceReservationUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="5dp"
+                    android:backgroundTint="@color/primary"
+                    android:hint="@string/totalcost"
+                    android:paddingVertical="10dp"
+                    android:text="1024500 VNĐ"
+                    android:textColor="@color/green"
+                    android:textStyle="bold"
+                    android:textSize="24dp"
+                    android:gravity="right"
+                    android:editable="false"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                style="@style/buttonOK"
+                android:text="@string/booking"
+                android:textSize="16dp"
+                android:id="@+id/bookingReservationUp"
+                android:layout_gravity="end"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="@color/primary"
+        android:layout_gravity="top"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/tektur"
+            android:gravity="center_vertical"
+            android:text="@string/reservation"
+            android:textColor="@color/white"
+            android:textSize="32dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</FrameLayout>

@@ -53,8 +53,6 @@ public class LogInFragment extends Fragment {
         String pass = sP.getString("Password", "");
         Boolean rem = sP.getBoolean("Remember", false);
 
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User_File", MODE_PRIVATE);
-
         txtEmail.setText(email);
         txtPassword.setText(pass);
         remember.setChecked(rem);
@@ -175,7 +173,16 @@ public class LogInFragment extends Fragment {
         editor.putString("Role", acc.getRole());
         editor.putString("Fullname", acc.getName());
         editor.putString("Phone", acc.getPhone());
-
         editor.commit();
+
+        SharedPreferences cK = getActivity().getSharedPreferences("Reservation_View_File", MODE_PRIVATE);
+        SharedPreferences.Editor editorCK = cK.edit();
+
+        editorCK.putString("NameCustomer",acc.getName());
+        editorCK.putString("PhoneCustomer",acc.getPhone());
+        editorCK.putString("EmailCustomer",acc.getEmail());
+        editorCK.putInt("IdCustomer",acc.getId());
+
+        editorCK.commit();
     }
 }

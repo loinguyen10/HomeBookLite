@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +13,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.united.homebooklite.R;
+import com.united.homebooklite.SharedClass;
 import com.united.homebooklite.adapter.SingleAdapter;
+import com.united.homebooklite.reservationActivity.ReservationActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,7 +26,7 @@ import java.util.Date;
 public class RoomShowActivity extends AppCompatActivity {
 
     String typeS, qualityS, amenitiesS, checkInDate, checkOutDate;
-    int propertyIdS, sizeS, bedS, peopleS, roomS, priceS, idS;
+    int propertyIdS, sizeS, bedS, peopleS, roomS, priceS, idS,night;
     TextView type, bed, people, size, price, checkDate;
     RecyclerView amenities;
     Button booking;
@@ -39,7 +42,7 @@ public class RoomShowActivity extends AppCompatActivity {
         booking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(RoomShowActivity.this, ReservationActivity.class));
             }
         });
 
@@ -48,7 +51,7 @@ public class RoomShowActivity extends AppCompatActivity {
 
     private void shared() {
         SharedPreferences sP = getSharedPreferences("Room_View_File", MODE_PRIVATE);
-        SharedPreferences cK = getSharedPreferences("Reservation_View_File", MODE_PRIVATE);
+        SharedPreferences cK = getSharedPreferences("Date_View_File", MODE_PRIVATE);
 
         typeS = sP.getString("Type", "");
         qualityS = sP.getString("Quality", "");
@@ -63,8 +66,6 @@ public class RoomShowActivity extends AppCompatActivity {
 
         checkInDate = cK.getString("CheckIn Date", "");
         checkOutDate = cK.getString("CheckOut Date", "");
-        Log.d("CheckIn Date",checkInDate);
-        Log.d("CheckOut Date",checkOutDate);
     }
 
     private void mapping() {
@@ -79,10 +80,16 @@ public class RoomShowActivity extends AppCompatActivity {
     }
 
     private void transfer() {
+        try{
+            night = SharedClass.calculate(checkInDate,checkOutDate);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
         type.setText(qualityS + " " + typeS + " Room");
         bed.setText(bedS + " giường");
         people.setText(peopleS + " người");
-        price.setText(priceS + " VNĐ");
+        price.setText((priceS * night) + " VNĐ");
         size.setText(sizeS + " m2");
 
         String[] amenitiesList = amenitiesS.split(";");
@@ -93,26 +100,7 @@ public class RoomShowActivity extends AppCompatActivity {
         amenities.setAdapter(adapter);
 
         checkDate.setText("Begin " + checkInDate + " to " + checkOutDate);
-
-        try{
-            calculate(checkInDate,checkOutDate);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
     }
 
-    private int calculate(String date1, String date2) throws ParseException {
-        int kq = 0;
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        Date date11 = format.parse(date1);
-        Date date22 = format.parse(date2);
 
-        Log.d("date1",date11+"");
-        Log.d("date2",date22+"");
-
-        kq = (int) (date22.getTime() - date11.getTime());
-
-        Log.d("kq",kq+"");
-        return kq;
-    }
 }
