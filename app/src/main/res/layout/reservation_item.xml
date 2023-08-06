@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="20dp"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:id="@+id/reservationItem"
+        style="@style/match"
+        android:foreground="@drawable/bg_stroke"
+        android:orientation="vertical"
+        android:weightSum="6.5"
+        android:paddingTop="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="2"
+            android:foreground="@drawable/square_stroke_black">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="24dp"
+                android:paddingRight="16dp"
+                android:text="@string/status"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@color/gadient"/>
+
+            <TextView
+                android:id="@+id/txtStatusReservationItem"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="24dp"
+                android:paddingRight="16dp"
+                android:text="@string/status"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:background="@color/green"
+                android:textAllCaps="true"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="2"
+            android:foreground="@drawable/square_stroke_black">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="24dp"
+                android:paddingRight="16dp"
+                android:text="@string/typeofroom"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@color/gadient"/>
+
+            <TextView
+                android:id="@+id/txtTypeRoomReservationItem"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="24dp"
+                android:paddingRight="16dp"
+                android:text="@string/typeofroom"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="2"
+            android:foreground="@drawable/square_stroke_black">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="24dp"
+                android:paddingRight="16dp"
+                android:text="@string/property"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@color/gadient"/>
+
+            <TextView
+                android:id="@+id/txtPropertyReservationItem"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="24dp"
+                android:paddingRight="16dp"
+                android:text="@string/property"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="2"
+            android:foreground="@drawable/square_stroke_black">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="24dp"
+                android:paddingRight="16dp"
+                android:text="@string/checkindate"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@color/gadient"/>
+
+            <TextView
+                android:id="@+id/txtCheckInReservationItem"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="24dp"
+                android:paddingRight="16dp"
+                android:text="@string/checkindate"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="2"
+            android:foreground="@drawable/square_stroke_black">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="24dp"
+                android:paddingRight="16dp"
+                android:text="@string/numbernight"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@color/gadient"/>
+
+            <TextView
+                android:id="@+id/txtNumberNightReservationItem"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="24dp"
+                android:paddingRight="16dp"
+                android:text="@string/numbernight"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="2"
+            android:foreground="@drawable/square_stroke_black">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="24dp"
+                android:paddingRight="16dp"
+                android:text="@string/totalcost"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@color/gadient"/>
+
+            <TextView
+                android:id="@+id/txtCostReservationItem"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="24dp"
+                android:paddingRight="16dp"
+                android:text="2000000 VNĐ"
+                android:textSize="20dp"
+                android:textColor="@color/orange"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5">
+
+            <TextView
+                android:id="@+id/seemoreReservationItem"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="11dp"
+                android:gravity="center_vertical|right"
+                android:paddingRight="40dp"
+                android:text="@string/seemore"
+                android:textColor="@color/primary"
+                android:textStyle="bold|italic"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

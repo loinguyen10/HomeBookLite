@@ -84,4 +84,17 @@ public interface InterfacePhp {
     Call<SvrResponse> getDistricts(
     );
 
+    @FormUrlEncoded
+    @POST("api_createReservation.php")
+    Call<SvrResponse> insertReservation(
+            @Field("account_id") int account_id,
+            @Field("room_id") int room_id,
+            @Field("checkin_date") String checkin_date,
+            @Field("checkout_date") String checkout_date,
+            @Field("people") int people,
+            @Field("room") int room,
+            @Field("cost") int cost,
+            @Field("status") int status
+    );
+
 }

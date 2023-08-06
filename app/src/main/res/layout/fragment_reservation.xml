@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".reservationActivity.ReservationFragment">
+
+    <ProgressBar
+        style="@style/wrap"
+        android:layout_gravity="center"
+        android:id="@+id/progressReservation" />
+
+    <TextView
+        style="@style/parent"
+        android:text="@string/nothing2"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="32dp"
+        android:id="@+id/txtNothingReservation"
+        android:textColor="@color/primary"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        style="@style/parent"
+        android:id="@+id/fReservationRView"
+        />
+
+</FrameLayout>

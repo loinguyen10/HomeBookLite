@@ -89,6 +89,8 @@
     <string name="numbercustomer">Number of Customers</string>
     <string name="numbernight">Number of Nights</string>
     <string name="totalcost">Total Costs</string>
+    <string name="status">Status</string>
+    <string name="seemore">- - -   See More   - - -</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

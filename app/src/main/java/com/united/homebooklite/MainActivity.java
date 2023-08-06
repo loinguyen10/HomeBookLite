@@ -22,6 +22,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.united.homebooklite.fragment.BlankFragment;
 import com.united.homebooklite.fragment.HomeFragment;
 import com.united.homebooklite.propertyActivity.PropertyFragment;
+import com.united.homebooklite.reservationActivity.ReservationFragment;
 import com.united.homebooklite.signActivity.SignActivity;
 
 import java.text.DateFormat;
@@ -119,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final Fragment blankFragment = new BlankFragment();
         final Fragment homeFragment = new HomeFragment();
         final Fragment propertyFragment = new PropertyFragment();
+        final Fragment reservationFragment = new ReservationFragment();
 
         switch (item.getItemId()){
             case R.id.dHome:
@@ -139,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.dReservation:
                 navigationView.setCheckedItem(R.id.dReservation);
-                replaceFragment(blankFragment);
+                replaceFragment(reservationFragment);
                 txtSearchBar.setVisibility(View.GONE);
                 drawerLayout.close();
                 break;
