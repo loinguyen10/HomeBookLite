@@ -31,17 +31,32 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/txtTypeRoomShowA"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="16dp"
                 android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingHorizontal="16dp"
-                android:text="@string/typeofroom"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:weightSum="7"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/txtTypeRoomShowA"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5.5"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/typeofroom"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:src="@drawable/ic_favorite_off"
+                    android:id="@+id/txtFavoriteRoomShowA"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -9,10 +9,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -21,20 +20,36 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.united.homebooklite.R;
 import com.united.homebooklite.SharedClass;
-import com.united.homebooklite.models.Account;
+import com.united.homebooklite.api.InterfacePhp;
+import com.united.homebooklite.api.PropertyInterface;
+import com.united.homebooklite.api.RoomInterface;
+import com.united.homebooklite.api.SvrResponse;
 import com.united.homebooklite.models.Property;
 import com.united.homebooklite.models.Reservation;
 import com.united.homebooklite.models.Room;
+import com.united.homebooklite.roomActivity.RoomActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ViewHolder> {
 
     Context context;
     ArrayList<Reservation> list;
+    List<Room> listRoom;
+    List<Property> listProperty;
     int night;
     //    PropertyFragment fragment;
     LayoutInflater inflater;
+    String namePropertyX, addressPropertyX, typeRoomX;
+    int roomP_IdX;
 
 
     public ReservationAdapter(Context context, ArrayList<Reservation> list, LayoutInflater inflater) {
@@ -54,10 +69,17 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     @Override
     public void onBindViewHolder(@NonNull ReservationAdapter.ViewHolder holder, int position) {
         SharedClass dao = new SharedClass();
+        listRoom = new ArrayList<>();
 
         Reservation r = list.get(position);
-        Room room = dao.get1Room(context, r.getRoom_id());
-        Property property = dao.get1Property(context, room.getProperty_id());
+
+        getRoom(r.getRoom_id());
+
+
+        //typeRoomX = room.getQuality() + " " + room.getType();
+        //roomP_IdX = room.getProperty_id();
+        //namePropertyX = property.getName();
+        //addressPropertyX = property.getAddress() + ", " + property.getDistrict() + ", " + property.getProvince();
 
         SharedPreferences sP = context.getSharedPreferences("Account_File", MODE_PRIVATE);
         String accEmail = sP.getString("Email", "");
@@ -72,9 +94,27 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             System.out.println(e.getMessage());
         }
 
-        holder.status.setText(r.getStatus());
-        holder.typeroom.setText(room.getQuality() + " " + room.getType());
-        holder.property.setText(property.getName());
+        switch (r.getStatus()) {
+            case 0:
+                holder.status.setText("Prepare");
+                holder.status.setBackgroundResource(R.color.orange);
+                break;
+            case 1:
+                holder.status.setText("In Progress");
+                holder.status.setBackgroundResource(R.color.green);
+                break;
+            case 2:
+                holder.status.setText("Done");
+                holder.status.setBackgroundResource(R.color.white);
+                break;
+            case 3:
+                holder.status.setText("Cancel");
+                holder.status.setBackgroundResource(R.color.gray);
+                break;
+        }
+
+        holder.typeroom.setText(typeRoomX);
+        holder.property.setText(namePropertyX);
         holder.checkindate.setText(r.getCheckin_date());
         holder.numbernight.setText(night + "");
         holder.cost.setText(r.getCost() + " VNĐ");
@@ -103,11 +143,11 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
                 phoneCustomer.setText(accPhone);
                 emailCustomer.setText(accEmail);
                 IdCustomer.setText(accId + "");
-                nameProperty.setText(property.getName());
-                addressProperty.setText(property.getAddress() + ", " + property.getDistrict() + ", " + property.getProvince());
-                typeRoom.setText(room.getQuality() + " " + room.getType());
+                nameProperty.setText(namePropertyX);
+                addressProperty.setText(addressPropertyX);
+                typeRoom.setText(typeRoomX);
                 numberRoom.setText(r.getRoom() + "");
-                numberCustomer.setText(r.getPeople());
+                numberCustomer.setText(r.getPeople() + "");
                 checkInDate.setText(r.getCheckin_date());
                 checkOutDate.setText(r.getCheckout_date());
                 numberNight.setText(night + "");
@@ -168,6 +208,67 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             cost = itemView.findViewById(R.id.txtCostReservationItem);
             seemore = itemView.findViewById(R.id.seemoreReservationItem);
             layout = itemView.findViewById(R.id.reservationItem);
+        }
+    }
+
+    private void getRoom(int pId) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://lmatmet1234.000webhostapp.com/homebook/room/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        InterfacePhp interfaceSelect = retrofit.create(InterfacePhp.class);
+        Call<SvrResponse> call = interfaceSelect.get1Room(pId);
+        call.enqueue(new Callback<SvrResponse>() {
+
+            @Override
+            public void onResponse(Call<SvrResponse> call, Response<SvrResponse> response) {
+                SvrResponse svrResponseSelect = response.body();
+                listRoom = new ArrayList<>(Arrays.asList(svrResponseSelect.getRooms()));
+                loading();
+            }
+
+            @Override
+            public void onFailure(Call<SvrResponse> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT);
+                Log.d("Message: ", t.getMessage());
+                Log.e("Message: ", t.getMessage());
+                getRoom(pId);
+            }
+        });
+    }
+
+    private void getProperty(int pId) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://lmatmet1234.000webhostapp.com/homebook/property/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        InterfacePhp interfaceSelect = retrofit.create(InterfacePhp.class);
+        Call<SvrResponse> call = interfaceSelect.get1Room(pId);
+        call.enqueue(new Callback<SvrResponse>() {
+
+            @Override
+            public void onResponse(Call<SvrResponse> call, Response<SvrResponse> response) {
+                SvrResponse svrResponseSelect = response.body();
+                listProperty = new ArrayList<>(Arrays.asList(svrResponseSelect.getProperties()));
+            }
+
+            @Override
+            public void onFailure(Call<SvrResponse> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT);
+                Log.d("Message: ", t.getMessage());
+                Log.e("Message: ", t.getMessage());
+                getProperty(pId);
+            }
+        });
+    }
+
+    private void loading() {
+        if (listRoom == null && listProperty == null) {
+
+        } else if (listRoom != null) {
+            getProperty(listRoom.get(0).getProperty_id());
         }
     }
 }

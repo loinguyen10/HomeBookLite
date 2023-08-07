@@ -1,5 +1,11 @@
 package com.united.homebooklite.api;
 
+import com.united.homebooklite.models.Property;
+import com.united.homebooklite.models.Reservation;
+import com.united.homebooklite.models.Room;
+
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -95,6 +101,30 @@ public interface InterfacePhp {
             @Field("room") int room,
             @Field("cost") int cost,
             @Field("status") int status
+    );
+
+    @GET("api_get1Room.php")
+    Call<SvrResponse> get1Room(
+            @Query("id") int id
+    );
+
+    @GET("api_get1Property.php")
+    Call<SvrResponse> get1Property(
+            @Query("id") int id
+    );
+
+    @FormUrlEncoded
+    @POST("api_createFavorite.php")
+    Call<SvrResponse> insertFavorite(
+            @Field("room_id") int room_id,
+            @Field("account_id") int account_id
+    );
+
+    @FormUrlEncoded
+    @POST("api_deleteFavorite.php")
+    Call<SvrResponse> deleteFavorite(
+            @Field("account_id") int account_id,
+            @Field("room_id") int room_id
     );
 
 }

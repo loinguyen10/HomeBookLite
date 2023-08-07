@@ -15,12 +15,14 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.united.homebooklite.adapter.ReservationAdapter;
+import com.united.homebooklite.adapter.RoomAdapter;
+import com.united.homebooklite.api.PropertyInterface;
+import com.united.homebooklite.api.RoomInterface;
 import com.united.homebooklite.models.Account;
+import com.united.homebooklite.models.Favorite;
 import com.united.homebooklite.models.Property;
 import com.united.homebooklite.models.Reservation;
 import com.united.homebooklite.models.Room;
-import com.united.homebooklite.reservationActivity.ReservationActivity;
-import com.united.homebooklite.reservationActivity.ReservationFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,7 +56,7 @@ public class SharedClass {
         List<Reservation> list = new ArrayList<>();
         RequestQueue queue = Volley.newRequestQueue(context);
 
-        String url = "https://lmatmet1234.000webhostapp.com/homebook/reservation/api_getReservationAccount.php?account_id="+accId;
+        String url = "https://lmatmet1234.000webhostapp.com/homebook/reservation/api_getReservationAccount.php?account_id=" + accId;
 
         JsonObjectRequest request = new JsonObjectRequest(url, new Response.Listener<JSONObject>() {
             @Override
@@ -75,7 +77,7 @@ public class SharedClass {
 
                         list.add(new Reservation(id, account_id, room_id, checkin_date, checkout_date, room, people, cost, status));
                     }
-                    ReservationAdapter adapter = new ReservationAdapter(context, (ArrayList<Reservation>) list,fragment.getLayoutInflater());
+                    ReservationAdapter adapter = new ReservationAdapter(context, (ArrayList<Reservation>) list, fragment.getLayoutInflater());
                     recyclerView.setAdapter(adapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -186,8 +188,8 @@ public class SharedClass {
         return list.get(0);
     }
 
-    public Room get1Room(Context context, int room_id) {
-        List<Room> list = new ArrayList<>();
+    public void get1Room(Context context, int room_id, RoomInterface callback) {
+        //return to this place
         RequestQueue queue = Volley.newRequestQueue(context);
 
         String url = "https://lmatmet1234.000webhostapp.com/homebook/reservation/api_getReservationAccount.php?id=" + room_id;
@@ -211,9 +213,9 @@ public class SharedClass {
                         int price = r.getInt("price");
                         int available = r.getInt("available");
 
-                        list.add(new Room(id, quality, type, property_id, size, people, bed, room, amenities, price,available));
+                        Room room1 = new Room(id, quality, type, property_id, size, people, bed, room, amenities, price, available);
+                        callback.onRoomReceived(room1);
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -225,11 +227,9 @@ public class SharedClass {
             }
         });
         queue.add(request);
-        return list.get(0);
     }
 
-    public Property get1Property(Context context, int property_id) {
-        List<Property> list = new ArrayList<>();
+    public void get1Property(Context context, int property_id, PropertyInterface callback) {
         RequestQueue queue = Volley.newRequestQueue(context);
 
         String url = "https://lmatmet1234.000webhostapp.com/homebook/property/api_get1Property.php?id=" + property_id;
@@ -252,11 +252,11 @@ public class SharedClass {
                         String check_time = property.getString("check_time");
                         String amenities = property.getString("amenities");
                         int rating = property.getInt("rating");
-                        int owner_id  = property.getInt("owner_id");
+                        int owner_id = property.getInt("owner_id");
 
-                        list.add(new Property(id, name, description, type, address, district, province, country, amenities,rating, check_time, owner_id));
+                        Property property1 = new Property(id, name, description, type, address, district, province, country, amenities, rating, check_time, owner_id);
+                        callback.onPropertyReceived(property1);
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -268,6 +268,88 @@ public class SharedClass {
             }
         });
         queue.add(request);
-        return list.get(0);
     }
+
+    public void selectVolleyFavorite(Context context, RecyclerView recyclerView, int accId) {
+
+        List<Favorite> list = new ArrayList<>();
+        List<Room> listRoom = new ArrayList<>();
+        List<Room> listRoom2 = new ArrayList<>();
+
+        //
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        String url = "https://lmatmet1234.000webhostapp.com/homebook/room/api_getAllRoom.php";
+
+        JsonObjectRequest request = new JsonObjectRequest(url, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray rooms = response.getJSONArray("rooms");
+                    for (int i = 0; i < rooms.length(); i++) {
+                        JSONObject r = rooms.getJSONObject(i);
+                        int id = r.getInt("id");
+                        String quality = r.getString("quality");
+                        String type = r.getString("type");
+                        int property_id = r.getInt("property_id");
+                        int size = r.getInt("size");
+                        int people = r.getInt("people");
+                        int bed = r.getInt("bed");
+                        int room = r.getInt("room");
+                        String amenities = r.getString("amenities");
+                        int price = r.getInt("price");
+                        int available = r.getInt("available");
+
+                        listRoom.add(new Room(id, quality, type, property_id, size, people, bed, room, amenities, price, available));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println(error.getMessage());
+            }
+        });
+        queue.add(request);
+        //
+        RequestQueue queue1 = Volley.newRequestQueue(context);
+        String url1 = "https://lmatmet1234.000webhostapp.com/homebook/favorite/api_getFavorite.php?account_id=" + accId;
+        JsonObjectRequest request1 = new JsonObjectRequest(url1, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray favorites = response.getJSONArray("favorites");
+                    for (int i = 0; i < favorites.length(); i++) {
+                        JSONObject favorite = favorites.getJSONObject(i);
+                        int id = favorite.getInt("id");
+                        int account_id = favorite.getInt("account_id");
+                        int room_id = favorite.getInt("room_id");
+
+                        list.add(new Favorite(id, account_id, room_id));
+                    }
+                    for(Favorite f : list){
+                        for (Room r : listRoom) {
+                            if(f.getRoom_id() == r.getId()){
+                                listRoom2.add(r);
+                            }
+                        }
+                    }
+
+                    RoomAdapter adapter = new RoomAdapter(context, (ArrayList<Room>) listRoom2);
+                    recyclerView.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println(error.getMessage());
+            }
+        });
+        queue1.add(request1);
+    }
+
 }
