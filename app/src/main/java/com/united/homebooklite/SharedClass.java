@@ -333,6 +333,7 @@ public class SharedClass {
                         for (Room r : listRoom) {
                             if(f.getRoom_id() == r.getId()){
                                 listRoom2.add(r);
+
                             }
                         }
                     }

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    app:cardCornerRadius="20dp"
+    tools:context=".roomActivity.EditHotelFragment">
+
+    <LinearLayout
+        style="@style/match"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/headerTextPrimary"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:text="@string/editroom"
+            android:textAllCaps="true" />
+
+        <LinearLayout
+            style="@style/parent"
+            android:weightSum="3"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/typeofroom"
+                android:gravity="center"
+                android:textSize="18dp"/>
+
+            <Spinner
+                android:id="@+id/typeEditRoom"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:layout_weight="2"
+                android:spinnerMode="dialog"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/parent"
+            android:weightSum="3"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/qualityofroom"
+                android:gravity="center"
+                android:textSize="18dp"/>
+
+            <Spinner
+                android:id="@+id/qualityEditRoom"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:layout_weight="2"
+                android:spinnerMode="dialog"/>
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout style="@style/parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/propertyEditRoom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:backgroundTint="@color/primary"
+                android:hint="Property"
+                android:enabled="false"
+                android:paddingVertical="10dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            style="@style/parent"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp"
+            android:weightSum="3">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/sizeEditRoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/primary"
+                    android:hint="@string/size2"
+                    android:inputType="number"
+                    android:paddingVertical="10dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/bedEditRoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/primary"
+                    android:hint="@string/bed"
+                    android:inputType="number"
+                    android:paddingVertical="10dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/peopleEditRoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/primary"
+                    android:hint="@string/people"
+                    android:inputType="number"
+                    android:paddingVertical="10dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/parent"
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/amenitiesEditRoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="5dp"
+                    android:backgroundTint="@color/primary"
+                    android:hint="@string/amenities"
+                    android:paddingVertical="10dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/priceEditRoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="5dp"
+                    android:backgroundTint="@color/primary"
+                    android:hint="@string/price2"
+                    android:inputType="number"
+                    android:paddingVertical="10dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingVertical="5dp">
+
+            <Switch
+                android:id="@+id/availableEditRoom"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/available" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/updateEditRoom"
+            style="@style/button"
+            android:layout_marginVertical="15dp"
+            android:text="@string/create" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

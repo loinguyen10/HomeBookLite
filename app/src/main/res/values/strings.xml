@@ -20,6 +20,7 @@
     <string name="mobile_phone">Mobile Phone</string>
     <string name="goingsomewhere"><b>GOING SOMEWHERE?</b></string>
     <string name="accept_license">Accept all license.</string>
+    <string name="available">Available</string>
     <string name="clickhere">Click Here</string>
     <string name="remember">Remember</string>
     <string name="haveaccount">You have a account?</string>
@@ -60,6 +61,7 @@
 
     <!--    room-->
     <string name="newroom">New Room</string>
+    <string name="editroom">Edit Room</string>
     <string name="bed">Bed</string>
     <string name="people">People</string>
     <string name="size">Size</string>

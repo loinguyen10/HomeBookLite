@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.united.homebooklite.fragment.BlankFragment;
+import com.united.homebooklite.fragment.FavoriteFragment;
 import com.united.homebooklite.fragment.HomeFragment;
 import com.united.homebooklite.propertyActivity.PropertyFragment;
 import com.united.homebooklite.reservationActivity.ReservationFragment;
@@ -121,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final Fragment homeFragment = new HomeFragment();
         final Fragment propertyFragment = new PropertyFragment();
         final Fragment reservationFragment = new ReservationFragment();
+        final Fragment favoriteFragment = new FavoriteFragment();
 
         switch (item.getItemId()){
             case R.id.dHome:
@@ -134,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.dFavorite:
                 navigationView.setCheckedItem(R.id.dFavorite);
-                replaceFragment(blankFragment);
+                replaceFragment(favoriteFragment);
                 txtSearchBar.setVisibility(View.GONE);
                 drawerLayout.close();
                 break;
