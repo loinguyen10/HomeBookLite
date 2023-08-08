@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -32,10 +33,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EditHotelFragment extends Fragment {
     Spinner typeS, qualityS;
+    Switch availableS;
     TextInputEditText property, size, bed, room, people, amenities, price;
-    Button create;
+    Button update;
     String pName;
-    int pId;
+    int pId,idX;
+    String typeX,qualityX,propertyX,amenitiesX;
+    int sizeX,bedX,peopleX,priceX,availableX;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +47,7 @@ public class EditHotelFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_edit_hotel, container, false);
 
         mapping(view);
+        transfer();
 
         SharedPreferences sP = getActivity().getSharedPreferences("Property_File", MODE_PRIVATE);
         pName = sP.getString("Fullname", "");
@@ -50,13 +55,13 @@ public class EditHotelFragment extends Fragment {
 
         property.setText(pName);
 
-        ArrayList<String> category = new ArrayList<>();
-        category.add("Single");
-        category.add("Double");
-        category.add("Twin");
-        category.add("Triple");
-        category.add("Quad");
-        ArrayAdapter adapterCategory = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, category);
+        ArrayList<String> typeA = new ArrayList<>();
+        typeA.add("Single");
+        typeA.add("Double");
+        typeA.add("Twin");
+        typeA.add("Triple");
+        typeA.add("Quad");
+        ArrayAdapter adapterCategory = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, typeA);
         typeS.setAdapter(adapterCategory);
 
         ArrayList<String> qualityA = new ArrayList<>();
@@ -69,10 +74,22 @@ public class EditHotelFragment extends Fragment {
         ArrayAdapter adapterQuality = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, qualityA);
         qualityS.setAdapter(adapterQuality);
 
-        create.setOnClickListener(new View.OnClickListener() {
+        for(int i = 0; i< typeA.size();i++){
+            if(typeX.equals(typeA.get(i))){
+                typeS.setSelection(i);
+            }
+        }
+
+        for(int i = 0; i< qualityA.size();i++){
+            if(qualityX.equals(qualityA.get(i))){
+                qualityS.setSelection(i);
+            }
+        }
+
+        update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addRoom();
+                updateRoom();
             }
         });
 
@@ -80,65 +97,84 @@ public class EditHotelFragment extends Fragment {
     }
 
     private void mapping(View view) {
-        typeS = view.findViewById(R.id.typeRoomUp);
-        qualityS = view.findViewById(R.id.qualityRoomUp);
-        property = view.findViewById(R.id.propertyRoomUp);
-        size = view.findViewById(R.id.sizeRoomUp);
-        bed = view.findViewById(R.id.bedRoomUp);
-        room = view.findViewById(R.id.roomRoomUp);
-        people = view.findViewById(R.id.peopleRoomUp);
-        amenities = view.findViewById(R.id.amenitiesRoomUp);
-        price = view.findViewById(R.id.priceRoomUp);
-        create = view.findViewById(R.id.createRoomUp);
+        typeS = view.findViewById(R.id.typeEditRoom);
+        qualityS = view.findViewById(R.id.qualityEditRoom);
+        property = view.findViewById(R.id.propertyEditRoom);
+        size = view.findViewById(R.id.sizeEditRoom);
+        bed = view.findViewById(R.id.bedEditRoom);
+        //room = view.findViewById(R.id.roomEditRoom);
+        availableS = view.findViewById(R.id.availableEditRoom);
+        people = view.findViewById(R.id.peopleEditRoom);
+        amenities = view.findViewById(R.id.amenitiesEditRoom);
+        price = view.findViewById(R.id.priceEditRoom);
+        update = view.findViewById(R.id.updateEditRoom);
     }
 
-    private void addRoom() {
-        Room room = new Room();
+    private void transfer(){
+        SharedPreferences sP = getActivity().getSharedPreferences("Room_Update_File", MODE_PRIVATE);
+        idX = sP.getInt("Id",0);
+        typeX = sP.getString("Type","");
+        qualityX = sP.getString("Quality","");
+        sizeX = sP.getInt("Size",0);
+        bedX = sP.getInt("Bed",0);
+        peopleX = sP.getInt("People",0);
+        amenitiesX = sP.getString("Amenities","");
+        priceX = sP.getInt("Price",0);
+        availableX = sP.getInt("Available",0);
 
-        room.setQuality(((String) qualityS.getSelectedItem()));
-        room.setProperty_id(pId);
-        room.setAmenities(amenities.getText().toString());
-        room.setSize(Integer.parseInt(size.getText().toString()));
-        room.setType(((String) typeS.getSelectedItem()));
-        room.setBed(Integer.parseInt(bed.getText().toString()));
-        room.setPeople(Integer.parseInt(people.getText().toString()));
-        room.setPrice(Integer.parseInt(price.getText().toString()));
-        room.setRoom(1);
-        room.setAvailable(0);
+        size.setText(sizeX+"");
+        bed.setText(bedX+"");
+        people.setText(peopleX+"");
+        amenities.setText(amenitiesX);
+        price.setText(priceX+"");
+        if(availableX == 0){
+            availableS.setChecked(false);
+        }else{
+            availableS.setChecked(true);
+        }
+    }
+    private void updateRoom() {
+        int available = 0;
+
+        if(availableS.isChecked()){
+            available = 1;
+        }
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://lmatmet1234.000webhostapp.com/homebook/room/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        InterfacePhp interfaceInsert = retrofit.create(InterfacePhp.class);
+        InterfacePhp interfaceUpdate = retrofit.create(InterfacePhp.class);
+
         Call<SvrResponse> call =
-                interfaceInsert.insertRoom(
-                        room.getQuality(),
-                        room.getType(),
-                        room.getSize(),
-                        room.getBed(),
-                        room.getPeople(),
-                        room.getRoom(),
-                        room.getAmenities(),
-                        room.getPrice(),
-                        room.getProperty_id(),
-                        room.getAvailable()
+                interfaceUpdate.updateRoom(
+                        idX,
+                        (String) qualityS.getSelectedItem(),
+                        (String) typeS.getSelectedItem(),
+                        Integer.parseInt(size.getText().toString()),
+                        Integer.parseInt(bed.getText().toString()),
+                        Integer.parseInt(people.getText().toString()),
+                        1,
+                        amenities.getText().toString(),
+                        Integer.parseInt(price.getText().toString()),
+                        available
                 );
+
         call.enqueue(new Callback<SvrResponse>() {
+
             @Override
             public void onResponse(Call<SvrResponse> call, Response<SvrResponse> response) {
-                SvrResponse svrResponseInsert = response.body();
-                Toast.makeText(getActivity(), "Thành công.", Toast.LENGTH_SHORT);
-                Log.d("Message: ", svrResponseInsert.getMessage());
+                SvrResponse svrResponseUpdate = response.body();//lay noi dung server tra ve
+                Toast.makeText(getActivity(), "Thành công.", Toast.LENGTH_SHORT).show();
+                Log.d("Message: ", svrResponseUpdate.getMessage());
                 getActivity().finish();
             }
 
+            //that bai
             @Override
             public void onFailure(Call<SvrResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), "Thất bại", Toast.LENGTH_SHORT);
                 Log.d("Message: ", t.getMessage());
-                Log.e("Message: ", t.getMessage());
             }
         });
     }

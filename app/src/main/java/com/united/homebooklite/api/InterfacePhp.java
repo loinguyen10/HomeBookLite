@@ -53,6 +53,21 @@ public interface InterfacePhp {
             @Field("available") int available
     );
 
+    @FormUrlEncoded
+    @POST("api_updateRoom.php")
+    Call<SvrResponse> updateRoom(
+            @Field("id") int id,
+            @Field("quality") String quality,
+            @Field("type") String type,
+            @Field("size") int size,
+            @Field("bed") int bed,
+            @Field("people") int people,
+            @Field("room") int room,
+            @Field("amenities") String amenities,
+            @Field("price") int price,
+            @Field("available") int available
+    );
+
     //properties
     @GET("api_getProperty.php")
     Call<SvrResponse> getProperties(

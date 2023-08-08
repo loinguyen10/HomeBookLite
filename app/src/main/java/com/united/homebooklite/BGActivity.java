@@ -13,6 +13,7 @@ import com.united.homebooklite.roomActivity.AddApartmentFragment;
 import com.united.homebooklite.roomActivity.AddHomestayFragment;
 import com.united.homebooklite.roomActivity.AddHotelFragment;
 import com.united.homebooklite.roomActivity.AddVillaFragment;
+import com.united.homebooklite.roomActivity.EditHotelFragment;
 
 public class BGActivity extends AppCompatActivity {
 
@@ -63,6 +64,13 @@ public class BGActivity extends AppCompatActivity {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.frameBGLayout, new AddVillaFragment())
+                    .commit();
+        }
+
+        if(screen.equals("editHotel")){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frameBGLayout, new EditHotelFragment())
                     .commit();
         }
     }

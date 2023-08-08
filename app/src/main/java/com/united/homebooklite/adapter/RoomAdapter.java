@@ -62,7 +62,9 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(context, BGActivity.class));
+                Intent intent = new Intent(context, BGActivity.class);
+                intent.putExtra("screen","editHotel");
+                context.startActivity(intent);
                 SharedPreferences sP = context.getSharedPreferences("Room_Update_File", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sP.edit();
                 editor.putString("Type", r.getType());
